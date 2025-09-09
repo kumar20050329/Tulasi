@@ -1,93 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfolio</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thulasikumar | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">My Name</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto"> 
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>  
 
-<section class="bg-primary text-center text-white p-4">   
-    <div class="container">
-    <img src="img/sivaney.jpg" alt="Profile Picture" class="male img-fluid rounded-circle mb-3">
-    <h1>Hi, I'm Thulasikumar</h1>
-    <p class="lead">Frontend Developer | UI Designer</p>
-    </div>
-</section>   
-
-
-<section id="about" class="p-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col">
-          <img src="img/About.jpg" alt="About Me" class="img-fluid rounded-3">
-        </div>
-        <div class="col-md-6 p-3">
-        <h2>About Me</h2>
-        <p>I am a passionate frontend developer with a keen interest in creating beautiful and functional user interfaces. I love to design and build web applications that provide a great user experience.</p>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+  <div class="container">
+    <a class="navbar-brand" href="#">Thulasikumar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
     </div>
   </div>
-</section>    
+</nav>
 
+<!-- Hero Section -->
+<section class="bg-primary text-white text-center py-5">
+  <div class="container" data-aos="fade-up">
+    <img src="https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png" alt="Profile Picture" width=30% class="rounded-circle  mb-5 p-5 border border-primary border-5">
+    <h1>Hi, I'm Thulasikumar</h1>
+    <p class="lead">Frontend Developer | UI Designer</p>
+  </div>
+</section>
 
-<section id="projects" class="bg-secondary text-dark p-5">
-    <h2>My Projects</h2>
-    <div class="container-fluid m-3">
-        <div class="mb-3">
-        <h3>Project One</h3>
-        <p>simple website using HTML and CSS</p>
-        <a href="https://www.w3schools.com/html/default.asp" target="_blank">Open</a>
-    </div>    
-    <div>
-        <h3>Project Two</h3>
-        <p>Portfolio using Flexbox and Grid</p>
-        <a href="https://www.grazitti.com/resource/articles/how-can-css-flex-and-grid-be-used-together-for-better-results/#:~:text=For%20example%2C%20Flexbox%20is%20used,better%20results%20and%20flexible%20layouts" target="_blank" >View</a>
+<!-- About Section -->
+<section id="about" class="py-5">
+  <div class="container" data-aos="fade-right">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="https://weblium.com/blog/wp-content/uploads/2021/05/19-Best-About-Me-Page-Examples-and-How-to-Write-a-Killer-About-Me-Page-1-1-1.png" alt="About Me" class="img-fluid rounded">
+      </div>
+      <div class="col-md-6">
+        <h2>About Me</h2>
+        <p>I am a passionate frontend developer with a focus on performance, responsive design, and clean code. I specialize in turning UI/UX designs into real interactive websites using modern tools and frameworks.</p>
+      </div>
     </div>
-    </div>  
-</section>      
+  </div>
+</section>
 
-<section class="p-4 text-center" id="details">
-    <form>
-        <div class="mb-4">
-        <h2>Contact Me</h2>
+<!-- Projects Section -->
+<section id="projects" class="bg-light py-5">
+  <div class="container" data-aos="fade-up">
+    <h2 class="text-center mb-4">Highlighted Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1588476376802-9e96f9d967f0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fGNvbXB1dGVyJTIwbW9ibGllJTIwYW5kJTIwdGFibGV0fGVufDB8fDB8fHww" class="card-img-top" alt="Project 1">
+          <div class="card-body">
+            <h5 class="card-title">Responsive Portfolio</h5>
+            <p class="card-text">A personal portfolio built with HTML, CSS Flexbox, and Grid showcasing responsiveness and sleek UI components.</p>
+            <a href="#" class="btn btn-outline-primary">View Code</a>
+          </div>
         </div>
-        <div class="mb-3 ">
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1499087666200-e07e9c631266?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VGFzayUyME1hbmFnZXIlMjBBcHBzJTIwaW1hZ2UlMjA0MDAweCUyMHRvJTIwNjAwMHglMjBleHBlbnNpdmUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D" class="card-img-top" alt="Project 2">
+          <div class="card-body">
+            <h5 class="card-title">Task Manager App</h5>
+            <p class="card-text">A to-do list web app with local storage, smooth animations, and task filtering.</p>
+            <a href="#" class="btn btn-outline-primary">Live Demo</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="https://images.unsplash.com/1/work-stations-plus-espresso.jpg?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fEJvb3RzdHJhcCUyMEJsb2clMjBUZW1wbGF0ZSUyMCUyMDYwMDB4NDAwMHxlbnwwfHwwfHx8MA%3D%3D" class="card-img-top" alt="Project 3">
+          <div class="card-body">
+            <h5 class="card-title">Bootstrap Blog Template</h5>
+            <p class="card-text">A modern blog layout template made using Bootstrap 5 components with mobile-first design.</p>
+            <a href="#" class="btn btn-outline-primary">Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-5 bg-white">
+  <div class="container" data-aos="fade-right">
+    <h2 class="text-center mb-4">My Skills</h2>
+    <div class="row text-center">
+      <div class="col-6 col-md-2 mb-3">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" class="img-fluid" alt="HTML">
+        <p>HTML5</p>
+      </div>
+      <div class="col-6 col-md-2 mb-3">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" class="img-fluid" alt="CSS">
+        <p>CSS3</p>
+      </div>
+      <div class="col-6 col-md-2 mb-3">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" class="img-fluid" alt="JS">
+        <p>JavaScript</p>
+      </div>
+      <div class="col-6 col-md-2 mb-3">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" class="img-fluid" alt="Bootstrap">
+        <p>Bootstrap</p>
+      </div>
+      <div class="col-6 col-md-2 mb-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/1200px-Git_icon.svg.png" class="img-fluid" alt="Git">
+        <p>Git</p>
+      </div>
+      <div class="col-6 col-md-2 mb-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" class="img-fluid" alt="VSCode">
+        <p>VS Code</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    <h2 class="text-center mb-4">Contact Me</h2>
+    <form class="mx-auto" style="max-width: 600px;">
+      <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input placeholder="Your Name">
-        </div>
-        <div class="mb-3">
+        <input type="text" id="name" class="form-control" placeholder="Your Name">
+      </div>
+      <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input placeholder="Your Email">
-        </div>
-        <div class="mb-3">
+        <input type="email" id="email" class="form-control" placeholder="Your Email">
+      </div>
+      <div class="mb-3">
         <label for="message" class="form-label">Message</label>
-        <textarea placeholder="Message"></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Send</button>
+        <textarea id="message" rows="4" class="form-control" placeholder="Your Message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Send</button>
     </form>
-</section>    
-    
-    <footer class="bg-dark text-white text-center p-4">
-        &copy; 2025Thulasikumar.
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center p-4 mt-5">
+  &copy; 2025 Thulasikumar
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
 </body>
 </html>
