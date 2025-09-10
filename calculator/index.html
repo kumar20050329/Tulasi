@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+    .display {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      text-align: right;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #eee;
+      transition: background 0.2s;
+    }
+    button:hover { background: #ddd; }
+    button.operator { background: #f9c74f; }
+    button.equal { background: #90be6d; grid-column: span 2; }
+    button.clear { background: #f94144; color: #fff; grid-column: span 2; }
+
+    .history {
+      margin-top: 15px;
+      max-height: 100px;
+      overflow-y: auto;
+      font-size: 0.9em;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" class="display" disabled>
+    <div class="buttons">
+      <button class="clear">C</button>
+      <button class="operator">÷</button>
+      <button class="operator">×</button>
+      <button class="operator">-</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button class="operator">+</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="equal">=</button>
+      <button>0</button>
+      <button>.</button>
+    </div>
+    <div class="history" id="history"></div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+    const buttons = document.querySelectorAll("button");
+    const historyBox = document.getElementById("history");
+    let currentInput = "";
+
+    function calculate() {
+      try {
+        let expression = currentInput.replace(/÷/g, "/").replace(/×/g, "*");
+        let result = eval(expression);
+        if (result !== undefined) {
+          historyBox.innerHTML = `${currentInput} = ${result}<br>` + historyBox.innerHTML;
+          currentInput = result.toString();
+          display.value = currentInput;
+        }
+      } catch {
+        display.value = "Error";
+        currentInput = "";
+      }
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.classList.contains("clear")) {
+          currentInput = "";
+          display.value = "";
+        } else if (btn.classList.contains("equal")) {
+          calculate();
+        } else {
+          currentInput += btn.textContent;
+          display.value = currentInput;
+        }
+      });
+    });
+
+    // Keyboard Support
+    document.addEventListener("keydown", (e) => {
+      if ((/[0-9\.\+\-\*\/]/).test(e.key)) {
+        currentInput += e.key.replace("*", "×").replace("/", "÷");
+        display.value = currentInput;
+      } else if (e.key === "Enter") {
+        calculate();
+      } else if (e.key === "Backspace") {
+        currentInput = currentInput.slice(0, -1);
+        display.value = currentInput;
+      } else if (e.key.toLowerCase() === "c") {
+        currentInput = "";
+        display.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
