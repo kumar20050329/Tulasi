@@ -29,7 +29,7 @@ body.dashboard-view { background-color: var(--body-bg); }
 /* --- Main Layout Structure --- */
 .site-header, .site-footer { display: none; } /* Hidden by default */
 body.dashboard-view .site-header, body.dashboard-view .site-footer { display: block; }
-.site-header { width: 100%; background-color: var(--header-bg); color: var(--header-text); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+.site-header { width: 100%; background-color: var(--header-bg); color: var(--header-text); box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 100; }
 .header-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
 .site-header h2 { font-size: 1.5rem; font-weight: 600; }
 .header-actions { display: flex; align-items: center; gap: 20px; }
@@ -93,11 +93,12 @@ body.login-view .form-group input::placeholder { color: #dddddd; }
 /* Table */
 #book-table { width: 100%; border-collapse: collapse; }
 #book-table th, #book-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
-#book-table th { background-color: #f8f9fa; font-weight: 600; color: #6c757d; }
+#book-table th { background-color: #f8f9fa; font-weight: 600; color: #6c757d; text-transform: uppercase; font-size: 0.85rem; }
 #book-table tbody tr:hover { background-color: #f8f9fa; }
 .status-badge { padding: 5px 12px; border-radius: 20px; font-weight: 500; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; }
 .status-available { background-color: rgba(46, 204, 113, 0.15); color: #27ae60; }
 .status-borrowed { background-color: rgba(231, 76, 60, 0.15); color: #c0392b; }
+.table-actions { display: flex; gap: 8px; }
 .table-actions .btn { padding: 6px 12px; font-size: 0.9rem; }
 
 /* --- PAGINATION STYLES --- */
@@ -107,7 +108,7 @@ body.login-view .form-group input::placeholder { color: #dddddd; }
 .pagination-controls .btn:disabled { background-color: var(--border-color); cursor: not-allowed; transform: none; box-shadow: none; color: var(--secondary-color); }
 
 /* Buttons */
-.btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 500; transition: all 0.2s ease; }
+.btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 500; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 .btn-primary { background-color: var(--primary-color); color: white; } .btn-primary:hover { background-color: var(--primary-hover); }
 .btn-secondary { background-color: #bdc3c7; color: #2c3e50; } .btn-secondary:hover { background-color: #95a5a6; }
@@ -118,7 +119,15 @@ body.login-view .form-group input::placeholder { color: #dddddd; }
 .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
 .modal.active { display: flex; }
 .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: var(--border-radius); max-width: 400px; text-align: center; animation: slideIn 0.3s; }
+/* NEW: Style for wider history modal */
+.modal-content.wide { max-width: 700px; }
+#history-modal-body { max-height: 400px; overflow-y: auto; text-align: left; margin-top: 20px;}
+#history-modal-body table { width: 100%; border-collapse: collapse; }
+#history-modal-body th, #history-modal-body td { padding: 10px; border-bottom: 1px solid var(--border-color); }
+
 @keyframes slideIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .modal-actions { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
 #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); padding: 15px 25px; border-radius: 6px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: bottom 0.5s ease; z-index: 2000; }
 #toast.show { bottom: 30px; }
+.error-message { color: var(--danger-color); font-size: 0.9rem; margin-top: 10px; text-align: center; }
+body.login-view .error-message { color: #f8d7da; }

@@ -32,7 +32,7 @@
             <section id="login-page" class="page active">
                 <div class="form-container">
                     <h2 class="form-title">Welcome</h2>
-                    <p class="form-subtitle">Please login the library Management System</p>
+                    <p class="form-subtitle">Please login to the Library Management System</p>
                     <form id="login-form">
                         <div class="form-group">
                             <label for="username">Username</label>
@@ -63,9 +63,7 @@
                         <div class="filter-box">
                             <select id="category-filter">
                                 <option value="">All Categories</option>
-                                <option value="Fiction">Fiction</option>
-                                <option value="Science">Science</option>
-                                <option value="History">History</option>
+                                <!-- Categories will be populated dynamically -->
                             </select>
                         </div>
                     </div>
@@ -80,8 +78,11 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="book-table-body"></tbody>
+                        <tbody id="book-table-body">
+                           <!-- JS dynamically inserts rows here -->
+                        </tbody>
                     </table>
+
                     <p id="no-books-message" class="info-message">No books found.</p>
 
                     <!-- PAGINATION CONTROLS -->
@@ -98,9 +99,9 @@
                 <div class="form-container add-book-form-container">
                     <h2 class="form-title">Add a New Book</h2>
                     <form id="add-book-form">
-                        <div class="form-group"><label for="new-book-title">Title</label><input type="text" id="new-book-title" required></div>
-                        <div class="form-group"><label for="new-book-author">Author</label><input type="text" id="new-book-author" required></div>
-                        <div class="form-group"><label for="new-book-category">Category</label><input type="text" id="new-book-category" required></div>
+                        <div class="form-group"><label for="new-book-title">Title</label><input type="text" id="new-book-title" required minlength="3"></div>
+                        <div class="form-group"><label for="new-book-author">Author</label><input type="text" id="new-book-author" required minlength="3"></div>
+                        <div class="form-group"><label for="new-book-category">Category</label><input type="text" id="new-book-category" required minlength="3" placeholder="e.g., Fiction, Science"></div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Save Book</button>
                             <button type="button" id="cancel-add-book" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</button>
@@ -118,6 +119,20 @@
 
     <!-- MODALS AND TOASTS -->
     <div id="confirmation-dialog" class="modal"><div class="modal-content"><p id="confirmation-message">Are you sure?</p><div class="modal-actions"><button id="confirm-yes" class="btn btn-primary">Yes</button><button id="confirm-no" class="btn btn-secondary">No</button></div></div></div>
+    
+    <!-- NEW: History Modal -->
+    <div id="history-modal" class="modal">
+        <div class="modal-content wide">
+            <h3 id="history-modal-title">Borrow History</h3>
+            <div id="history-modal-body">
+                <!-- History content will be injected here by JS -->
+            </div>
+            <div class="modal-actions">
+                <button id="history-modal-close" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
     <div id="toast"></div>
     
     <script src="script.js"></script>
