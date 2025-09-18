@@ -131,3 +131,8 @@ body.login-view .form-group input::placeholder { color: #dddddd; }
 #toast.show { bottom: 30px; }
 .error-message { color: var(--danger-color); font-size: 0.9rem; margin-top: 10px; text-align: center; }
 body.login-view .error-message { color: #f8d7da; }
+
+.danger {
+  color: red;
+  font-weight: bold;
+}

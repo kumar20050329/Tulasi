@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 book.available = false;
                 book.borrowerId = currentUser.userId;
                 await put('books', book);
-                await add('transactions', { bookId, userId: currentUser.userId, borrowDate: new Date(), returnDate: null });
+                await add('transactions', { bookId, userId: currentUser.userId, borrowDate: new Date(), returnDate: null});
                 showToast('Book borrowed successfully!');
                 loadBooks();
             });
@@ -287,16 +287,49 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (transactions.length === 0) {
             historyModalBody.innerHTML = '<p>No borrow history found for this book.</p>';
         } else {
-            let tableHTML = '<table><thead><tr><th>User</th><th>Borrow Date</th><th>Return Date</th></tr></thead><tbody>';
-            transactions.sort((a,b) => b.borrowDate - a.borrowDate).forEach(txn => {
-                tableHTML += `<tr>
-                    <td>${userMap.get(txn.userId) || 'Unknown User'}</td>
-                    <td>${new Date(txn.borrowDate).toLocaleString()}</td>
-                    <td>${txn.returnDate ? new Date(txn.returnDate).toLocaleString() : 'Not Returned'}</td>
-                </tr>`;
-            });
-            tableHTML += '</tbody></table>';
-            historyModalBody.innerHTML = tableHTML;
+            
+           let tableHTML = `<table><thead><tr><th>User</th><th>Book Borrow Count</th><th>Borrow Date</th><th>Return Date</th><th>numofDays</th></tr></thead><tbody>`;
+ 
+// Step 1: Build a user borrow count map
+const borrowCountMap = new Map();
+transactions.forEach(txn => {
+    const userId = txn.userId;
+    borrowCountMap.set(userId, (borrowCountMap.get(userId) || 0) + 1);
+});
+ 
+// Step 2: Find the max borrow count
+let maxBorrowCount = 0;
+borrowCountMap.forEach(count => {
+    if (count > maxBorrowCount) maxBorrowCount = count;
+});
+ 
+// Step 3: Sort and generate the table rows
+transactions
+    .sort((a, b) => b.borrowDate - a.borrowDate)
+    .forEach(txn => {
+        const borrow = new Date(txn.borrowDate);
+        const returnDate = txn.returnDate ? new Date(txn.returnDate) : new Date();
+        const borrowMid = new Date(borrow.getFullYear(), borrow.getMonth(), borrow.getDate());
+        const returnMid = new Date(returnDate.getFullYear(), returnDate.getMonth(), returnDate.getDate());
+        const diffDays = Math.floor((returnMid - borrowMid) / (1000 * 60 * 60 * 24)) + 1;
+        const userId = txn.userId;
+        const borrowCount = borrowCountMap.get(userId) || 0;
+        const isTopUser = borrowCount === maxBorrowCount ? '⭐' : '';
+ 
+        tableHTML += `
+            <tr>
+            <td>${userMap.get(userId) || 'Unknown User'} ${isTopUser}</td>
+            <td>${borrowCount}</td>
+            <td>${borrow.toLocaleString()}</td>
+            <td>${txn.returnDate ? returnDate.toLocaleString() : 'Not Returned'}</td>
+            <td class="${diffDays > 5 ? 'danger' : ''}">${diffDays}</td>
+            
+            </tr>`;
+           });
+
+          tableHTML += '</tbody></table>';
+           historyModalBody.innerHTML = tableHTML;
+
         }
         historyModal.classList.add('active');
     }
