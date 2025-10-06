@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">            
+</head>
+<body class="login-view"> <!-- Starts in login view by default -->
+
+    <!-- SITE HEADER (Initially hidden) -->
+    <header class="site-header">
+        <div class="header-container">
+            <h2 class="logo"><i class="fas fa-book-open-reader"></i> Library System</h2>
+            <!-- Admin Navigation -->
+            <nav id="admin-nav" class="admin-nav">
+                <a href="#" data-page="dashboard" class="active">Dashboard</a>
+                <a href="#" data-page="students">Students</a>
+                <a href="#" data-page="overdue">Overdue Report</a>
+                <a href="#" data-page="transactions">All Transactions</a>
+                <a href="#" data-page="adminManagement" id="admin-management-link">Admin Management</a>
+            </nav>
+            <div class="header-actions">
+                <span id="welcome-message"></span>
+                <button id="logout-btn" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Login Page -->
+            <section id="login-page" class="page active">
+                <div class="form-container">
+                    <h2 class="form-title">Welcome</h2>
+                    <p class="form-subtitle">Login to the Library Management System</p>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" placeholder="superadmin / librarian / student" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="superadmin / librarian / student" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Login</button>
+                        <p id="login-error" class="error-message"></p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Dashboard Page -->
+            <section id="dashboard-page" class="page">
+                <div id="dashboard-analytics" class="analytics-container">
+                    <div class="stat-card"><h3>Total Books</h3><p id="total-books-stat">0</p><i class="fas fa-book"></i></div>
+                    <div class="stat-card"><h3>Available Books</h3><p id="available-books-stat">0</p><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-card"><h3>Borrowed Books</h3><p id="borrowed-books-stat">0</p><i class="fas fa-times-circle"></i></div>
+                    <div class="stat-card"><h3>Overdue Books</h3><p id="overdue-books-stat">0</p><i class="fas fa-exclamation-triangle"></i></div>
+                </div>
+                <div class="book-list-container">
+                    <div class="book-list-header"><h3>Book Collection</h3><button id="add-book-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Book</button></div>
+                    <div class="table-controls">
+                        <div class="search-box"><input type="text" id="search-input" placeholder="Search by title or author..."><i class="fas fa-search search-icon"></i></div>
+                        <div class="filter-box"><select id="category-filter"><option value="">All Categories</option></select></div>
+                        <div class="filter-box"><select id="availability-filter"><option value="">All Statuses</option><option value="available">Available</option><option value="borrowed">Borrowed</option></select></div>
+                    </div>
+                    <table id="book-table">
+                        <thead><tr><th>S.No</th><th>Title</th><th>Author</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody id="book-table-body"></tbody>
+                    </table>
+                    <p id="no-books-message" class="info-message">No books found.</p>
+                    <div id="pagination-controls" class="pagination-controls">
+                        <button id="prev-page-btn" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Prev</button>
+                        <span id="page-info" class="page-info"></span>
+                        <button id="next-page-btn" class="btn btn-secondary">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add New Book Page -->
+            <section id="add-book-page" class="page">
+                 <div class="form-container add-book-form-container">
+                    <h2 class="form-title"><i class="fas fa-plus-circle"></i> Add a New Book</h2>
+                    <form id="add-book-form">
+                        <div class="form-group"><label for="new-book-title">Title</label><input type="text" id="new-book-title" required minlength="3" placeholder="Title"></div>
+                        <div class="form-group"><label for="new-book-author">Author</label><input type="text" id="new-book-author" required minlength="3" placeholder="Author"></div>
+                        <div class="form-group"><label for="new-book-category">Category</label><input type="text" id="new-book-category" required minlength="3" placeholder="Category"></div>
+                        <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button><button type="button" id="cancel-add-book-btn" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</button></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Students List Page -->
+            <section id="students-page" class="page">
+                <div class="report-container">
+                    <div class="report-header"><h3><i class="fas fa-users"></i> Student Management</h3></div>
+                    <table id="students-table">
+                        <thead><tr><th>Student ID</th><th>Username</th><th>Actions</th></tr></thead>
+                        <tbody id="students-table-body"></tbody>
+                    </table>
+                    <p id="no-students-message" class="info-message">No students found.</p>
+                </div>
+            </section>
+
+            <!-- Student Profile Page -->
+            <section id="profile-page" class="page">
+                <div class="profile-container">
+                    <div class="report-header">
+                        <h3 id="profile-page-title"><i class="fas fa-user-circle"></i> User Profile</h3>
+                        <button class="btn btn-secondary back-to-students-btn"><i class="fas fa-arrow-left"></i> Back to Students List</button>
+                    </div>
+                    <div class="profile-grid">
+                        <div class="profile-section">
+                            <h4>Currently Borrowed Books</h4>
+                            <table id="profile-borrowed-table">
+                                <thead><tr><th>Title</th><th>Author</th><th>Borrow Date</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                            <p id="no-borrowed-message" class="info-message">No books currently borrowed.</p>
+                        </div>
+                        <div class="profile-section">
+                            <h4>Update Profile</h4>
+                            <form id="update-profile-form">
+                                <div class="form-group"><label for="update-password">New Password</label><input type="password" id="update-password" placeholder="Enter new password" minlength="4"></div>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </form>
+                        </div>
+                        <div class="profile-section full-width">
+                             <h4>Borrow History</h4>
+                            <table id="profile-history-table">
+                                <thead><tr><th>Title</th><th>Author</th><th>Borrow Date</th><th>Return Date</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                            <p id="no-history-message" class="info-message">No borrow history found.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Management Page -->
+            <section id="admin-management-page" class="page">
+                <div class="admin-management-grid">
+                    <div class="report-container">
+                        <div class="report-header"><h3><i class="fas fa-user-shield"></i> Admins & Librarians</h3></div>
+                        <table id="admins-table">
+                            <thead><tr><th>User ID</th><th>Username</th><th>Role</th><th>Actions</th></tr></thead>
+                            <tbody id="admins-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="form-container">
+                        <h2 class="form-title">Add New Librarian</h2>
+                        <form id="add-librarian-form">
+                            <div class="form-group"><label for="new-librarian-username">Username</label><input type="text" id="new-librarian-username" placeholder="enter the name" required minlength="3"></div>
+                            <div class="form-group"><label for="new-librarian-password">Password</label><input type="password" id="new-librarian-password" placeholder="enter the password" required minlength="4"></div>
+                            <button type="submit" class="btn btn-primary btn-full">Create Librarian</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Pages -->
+            <section id="overdue-page" class="page"><div class="report-container"><div class="report-header"><h3><i class="fas fa-exclamation-triangle"></i> Overdue Books Report</h3></div><table id="overdue-table"><thead><tr><th>Book Title</th><th>Borrowed By</th><th>Borrow Date</th><th>Days Overdue</th></tr></thead><tbody id="overdue-table-body"></tbody></table><p id="no-overdue-message" class="info-message">No overdue books found.</p></div></section>
+            <section id="transactions-page" class="page"><div class="report-container"><div class="report-header"><h3><i class="fas fa-receipt"></i> All Transactions</h3><button id="export-csv-btn" class="btn btn-success"><i class="fas fa-file-csv"></i> Export to CSV</button></div><table id="transactions-table"><thead><tr><th>Book Title</th><th>User</th><th>Borrow Date</th><th>Return Date</th></tr></thead><tbody id="transactions-table-body"></tbody></table><p id="no-transactions-message" class="info-message">No transactions found.</p></div></section>
+        </div>
+    </main>
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer"><p>&copy; 2025 Library Management System. Designed by Thulasi.</p></footer>
+
+    <!-- MODALS AND TOASTS -->
+    <div id="confirmation-dialog" class="modal"><div class="modal-content"><p id="confirmation-message">Are you sure?</p><div class="modal-actions"><button id="confirm-yes" class="btn btn-primary">Yes</button><button id="confirm-no" class="btn btn-secondary">No</button></div></div></div>
+    <div id="history-modal" class="modal"><div class="modal-content wide"><h3 id="history-modal-title">Borrow History</h3><div id="history-modal-body"></div><div class="modal-actions"><button id="history-modal-close" class="btn btn-secondary">Close</button></div></div></div>
+    <div id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
